@@ -1,0 +1,22 @@
+services:
+  data_postgres:
+    image: postgres
+    container_name: my_data_29
+    environment:
+      - POSTGRES_PASSWORD=2901
+      - POSTGRES_USER = pasha
+      - POSTGRES_DB=place
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - data_postgres:/var/lib/postgresql/data
+
+  my_redis:
+    image: redis
+    ports:
+     - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  data_postgres:
