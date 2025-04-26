@@ -12,7 +12,7 @@ from database.messega_user.text_massege import text_in_card, greeting
 import asyncio
 from random import randint
 
-from watchgod import run_process
+#from watchgod import run_process
 
 
 class Form(StatesGroup):
@@ -59,7 +59,7 @@ def get_delete_inline(place_id: int):
 async def start(message: Message, state: FSMContext):
     keyboard = ReplyKeyboardMarkup(keyboard=key, resize_keyboard=True)
     name = message.from_user.full_name
-    await message.answer(greeting(), reply_markup=keyboard, parse_mode=ParseMode.HTML)
+    await message.answer(greeting(name), reply_markup=keyboard, parse_mode=ParseMode.HTML)
     await state.clear()
 
 
@@ -353,7 +353,7 @@ async def add_address(message: Message, state: FSMContext):
     place = Place.from_dict(data.get('place'))
     place.address = message.text
     await state.update_data(place=place.to_dict())
-    await message.answer("Отлично, теперь отправь фото этого мечта")
+    await message.answer("Отлично, теперь отправь фото этого места")
     await state.set_state(Form.photo)
 
 
@@ -385,10 +385,10 @@ async def main():
     await dp.start_polling(bot)
 
 
-def main1():
-    asyncio.run(main())
+# def main1():
+#     asyncio.run(main())
 
 
 if __name__ == "__main__":
-    # asyncio.run(main())
-    run_process('.', main1)
+    asyncio.run(main())
+    #run_process('.', main1)

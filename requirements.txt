@@ -1,0 +1,6 @@
+aiogram
+redis
+pydantic_settings
+pydantic
+sqlalchemy
+psycopg2-binary

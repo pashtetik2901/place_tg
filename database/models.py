@@ -47,7 +47,7 @@ class ModelWrite(Base):
 
 data_path = config.data_url
 
-engine = create_engine(data_path, echo=True)
+engine = create_engine(data_path, echo=False)
 Session = sessionmaker(engine)
 
 def create_table():

@@ -1,4 +1,11 @@
 services:
+
+  bot:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - my_redis
+      - data_postgres
   data_postgres:
     image: postgres
     container_name: my_data_29
